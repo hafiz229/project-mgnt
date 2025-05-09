@@ -3,6 +3,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { GET_PROJECT } from "../queries/projectQueries";
 import Spinner from "../components/Spinner";
+import ClientInfo from "../components/ClientInfo";
 
 const Project = () => {
   const { id } = useParams();
@@ -26,6 +27,8 @@ const Project = () => {
 
           <h5 className="mt-3">Project Status</h5>
           <p className="lead">{data.project.status}</p>
+
+          <ClientInfo client={data.project.client} />
         </div>
       )}
     </>
