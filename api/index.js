@@ -41,6 +41,9 @@ app.use(
     })
 );
 
+// Add this before other routes
+app.options("*", cors()); // Enable preflight for all routes
+
 app.use("/graphql", graphqlHTTP({
     schema,
     graphiql: process.env.NODE_ENV === "development"
