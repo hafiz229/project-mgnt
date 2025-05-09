@@ -31,18 +31,19 @@ const cache = new InMemoryCache({
 //   uri: "http://localhost:5000/graphql",
 //   cache,
 // });
-// const client = new ApolloClient({
-//   uri: import.meta.env.VITE_API_URL,
-//   cache,
-// });
-// src/App.js (or wherever your ApolloClient is configured)
+
 const client = new ApolloClient({
-  uri:
-    import.meta.env.MODE === "development"
-      ? "http://localhost:5000/graphql" // Local backend
-      : "/api/graphql", // Production (relative path)
-  cache: new InMemoryCache(),
+  uri: import.meta.env.VITE_API_URL,
+  cache,
 });
+// src/App.js (or wherever your ApolloClient is configured)
+// const client = new ApolloClient({
+//   uri:
+//     import.meta.env.MODE === "development"
+//       ? "http://localhost:5000/graphql" // Local backend
+//       : "/api/graphql", // Production (relative path)
+//   cache: new InMemoryCache(),
+// });
 
 function App() {
   return (

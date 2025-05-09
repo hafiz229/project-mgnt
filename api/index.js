@@ -12,37 +12,16 @@ const app = express();
 connectDB();
 
 // app.use(cors());
-// app.use(cors({
-//     origin: process.env.NODE_ENV === "development"
-//         ? "*"
-//         : ["https://project-mgnt.vercel.app"]
-// }));
-// app.use(cors({ origin: "*" })); // Remove after testing!
-const allowedOrigins = [
-    "https://project-mgnt.vercel.app", // Production frontend
-    "http://localhost:5173",           // Local Vite dev server
-    "http://localhost:3000",           // Optional: For Create React App
-];
 
-app.use(
-    cors({
-        origin: function (origin, callback) {
-            // Allow requests with no origin (e.g., curl, Postman)
-            if (!origin) return callback(null, true);
+app.use(cors({
+    origin: [
+        "http://localhost:5173",
+        "http://localhost:4173",
+        "https://project-mgnt.vercel.app"
+    ],
+    credentials: true
+}));
 
-            if (allowedOrigins.includes(origin)) {
-                callback(null, true);
-            } else {
-                callback(new Error(`Origin '${origin}' not allowed by CORS`));
-            }
-        },
-        methods: ["GET", "POST", "OPTIONS"], // Explicitly allow preflight
-        credentials: true,                    // Required for cookies/auth
-    })
-);
-
-// Add this before other routes
-app.options("*", cors()); // Enable preflight for all routes
 
 app.use("/graphql", graphqlHTTP({
     schema,
