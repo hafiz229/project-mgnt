@@ -18,4 +18,8 @@ app.use("/graphql", graphqlHTTP({
     graphiql: process.env.NODE_ENV === "development"
 }))
 
-app.listen(port, console.log(`Server running on port ${port}`));
+if (process.env.NODE_ENV === "development") {
+    app.listen(port, () => console.log(`Server running locally on port ${port}`.yellow.bold));
+} else {
+    module.exports = app;
+}
