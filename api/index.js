@@ -11,7 +11,12 @@ const app = express();
 
 connectDB();
 
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+    origin: process.env.NODE_ENV === "development"
+        ? "*"
+        : ["https://project-mgnt.vercel.app"]
+}));
 
 app.use("/graphql", graphqlHTTP({
     schema,
