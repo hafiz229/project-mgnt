@@ -13,18 +13,18 @@ connectDB();
 
 app.use(cors());
 
-app.use(cors({
-    origin: 'https://project-mgnt-frontend.vercel.app'
-}));
-
 // app.use(cors({
-//     origin: [
-//         "http://localhost:5173",
-//         "http://localhost:4173",
-//         "https://project-mgnt.vercel.app",
-//     ],
-//     credentials: true
+//     origin: 'https://project-mgnt-frontend.vercel.app'
 // }));
+
+app.use(cors({
+    origin: [
+        "http://localhost:5173",
+        "http://localhost:4173",
+        "https://project-mgnt.vercel.app",
+    ],
+    credentials: true
+}));
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
 
