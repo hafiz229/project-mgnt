@@ -17,11 +17,17 @@ app.use(cors({
     origin: [
         "http://localhost:5173",
         "http://localhost:4173",
-        "https://project-mgnt.vercel.app"
+        "https://project-mgnt.vercel.app",
+        "https://*.vercel.app"
     ],
     credentials: true
 }));
 
+// Add error logging middleware
+app.use((err, req, res, next) => {
+    console.error('API Error:', err);
+    res.status(500).json({ error: 'Internal Server Error', message: err.message });
+});
 
 app.use("/graphql", graphqlHTTP({
     schema,
