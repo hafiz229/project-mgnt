@@ -14,7 +14,7 @@ connectDB();
 app.use(cors());
 
 app.use(cors({
-    origin: 'https://project-mgnt.vercel.app'
+    origin: 'https://project-mgnt-frontend.vercel.app'
 }));
 
 // app.use(cors({
