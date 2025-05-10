@@ -13,21 +13,17 @@ connectDB();
 
 // app.use(cors());
 
-app.use(cors({
-    origin: [
-        "http://localhost:5173",
-        "http://localhost:4173",
-        "https://project-mgnt.vercel.app",
-        "https://*.vercel.app"
-    ],
-    credentials: true
-}));
+// app.use(cors({
+//     origin: [
+//         "http://localhost:5173",
+//         "http://localhost:4173",
+//         "https://project-mgnt.vercel.app",
+//         "https://*.vercel.app"
+//     ],
+//     credentials: true
+// }));
 
-// Add error logging middleware
-app.use((err, req, res, next) => {
-    console.error('API Error:', err);
-    res.status(500).json({ error: 'Internal Server Error', message: err.message });
-});
+app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.use("/graphql", graphqlHTTP({
     schema,
