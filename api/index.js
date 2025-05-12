@@ -14,7 +14,7 @@ connectDB();
 app.use(cors());
 
 app.use(cors({
-    origin: 'https://project-mgnt.vercel.app'
+    origin: ['https://project-mgnt.vercel.app', "*"]
 }));
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
